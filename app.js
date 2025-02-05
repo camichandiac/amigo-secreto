@@ -7,6 +7,7 @@ function agregarAmigo (){
         alert ("Por favor, inserte un nombre")
     } else {
         amigos.push (amigoAgregado);
+        mostrarListaAmigos();
     }
     console.log (amigos);
     limpiarCaja();
@@ -18,5 +19,9 @@ function limpiarCaja() {
     document.getElementById('amigo').value = '';
 }
 
-
+function mostrarListaAmigos() {
+    let amigosAgregados = document.querySelector("ul");
+    amigosAgregados.innerHTML = amigos;
+    return;
+}
 
