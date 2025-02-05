@@ -3,7 +3,11 @@ let amigos = [];
 //Agregar un amigo al Array cuando se hace click en el botón añadir
 function agregarAmigo (){
     let amigoAgregado = document.getElementById("amigo").value;
-    amigos.push (amigoAgregado);
+    if (amigoAgregado == ""){
+        alert ("Por favor, inserte un nombre")
+    } else {
+        amigos.push (amigoAgregado);
+    }
     console.log (amigos);
     limpiarCaja();
     return;
