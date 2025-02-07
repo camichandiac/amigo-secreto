@@ -21,7 +21,8 @@ function limpiarCaja() {
 
 function mostrarListaAmigos() {
     let amigosAgregados = document.getElementById("listaAmigos");
-   
+   let elementoLista = "";
+   amigosAgregados.innerHTML = "";
     for (let i = 0; i < amigos.length; i++){
         elementoLista = document.createElement ("li");
         elementoLista.textContent = amigos [i];
