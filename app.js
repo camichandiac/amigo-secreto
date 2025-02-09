@@ -1,14 +1,17 @@
 let amigos = [];
+let amigosAgregados = "";
 
 //Agregar un amigo al Array cuando se hace click en el botón añadir
 function agregarAmigo (){
     let amigoNuevo = document.getElementById("amigo").value;
-    if (amigo-amigoNuevo == ""){
+    if (amigoNuevo == ""){
         alert ("Por favor, inserte un nombre")
-    } else {
-        amigos.push (amigoNuevo);
-        mostrarListaAmigos();
-    }
+    } else if (amigos.includes (amigoNuevo)){
+            alert ("Nombre repetido, ingresa un nuevo nombre o incluye el apellido")
+        }else{
+            amigos.push (amigoNuevo);
+            mostrarListaAmigos();
+        }
     console.log (amigos);
     limpiarCaja();
     return;
@@ -19,34 +22,34 @@ function limpiarCaja() {
     document.getElementById('amigo').value = '';
 }
 
+function limpiarLista(){
+    amigosAgregados.innerHTML = ""
+}
+
 function mostrarListaAmigos() {
-    let amigosAgregados = document.getElementById("listaAmigos");
-   let elementoLista = "";
-   amigosAgregados.innerHTML = "";
+    amigosAgregados = document.getElementById("listaAmigos");
+    let elementoLista = "";
+   //Elimina los nombres repetidos antes de iniciar el bucle
+    limpiarLista();
     for (let i = 0; i < amigos.length; i++){
+        //crea el nodo
         elementoLista = document.createElement ("li");
+        //asigna texto al nodo
         elementoLista.textContent = amigos [i];
+        //inserta el nodo a la estructura DOM
         amigosAgregados.appendChild(elementoLista);
     }
     //amigosAgregados.innerHTML = "";
     return;
 }
-/*
-// Supongamos que tenemos un arreglo de nombres
-const nombres = ['Juan', 'María', 'Pedro', 'Ana'];
 
-// Seleccionamos el elemento del DOM donde queremos agregar la lista
-const lista = document.getElementById('listaAmigos');
-
-// Recorremos el arreglo y creamos los elementos de la lista
-for (let i = 0; i < nombres.length; i++) {
-  // Creamos un elemento <li>
-  const elemento = document.createElement('li');
-  
-  // Agregamos el nombre al elemento <li>
-  elemento.textContent = nombres[i];
-  
-  // Agregamos el elemento <li> a la lista
-  lista.appendChild(elemento);
-}
-  */
+function sortearAmigo(){
+    let amigoSorteado = amigos [Math.floor(Math.random()*amigos.length)];
+    let mostrarAmigoSecreto = document.getElementById ("resultado");
+    if (amigos == ""){
+        alert("Por favor, inserte al menos un nombre");
+    }else{
+        limpiarLista();
+        mostrarAmigoSecreto.innerHTML = `Tu amigo secreto es ${amigoSorteado}`
+    }
+    }
